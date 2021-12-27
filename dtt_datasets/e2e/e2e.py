@@ -3,25 +3,25 @@ import csv
 import os.path
 from typing import List, Tuple
 
-from datasets.base import BaseDataset, DatasetType
+from dtt_datasets.base import BaseDataset, DatasetType
 
 
-class Restaurant(BaseDataset):
+class E2E(BaseDataset):
     _csv_for = {
-        DatasetType.TRAIN: os.path.join(os.path.dirname(os.path.realpath(__file__)), 'restaurant_train.csv'),
-        DatasetType.DEV:   os.path.join(os.path.dirname(os.path.realpath(__file__)), 'restaurant_dev.csv'),
-        DatasetType.TEST:  os.path.join(os.path.dirname(os.path.realpath(__file__)), 'restaurant_test.csv')
+        DatasetType.TRAIN: os.path.join(os.path.dirname(os.path.realpath(__file__)), 'trainset.csv'),
+        DatasetType.DEV:   os.path.join(os.path.dirname(os.path.realpath(__file__)), 'devset.csv'),
+        DatasetType.TEST:  os.path.join(os.path.dirname(os.path.realpath(__file__)), 'testset.csv')
     }
 
     def __init__(self, which_set: DatasetType):
-        super(Restaurant, self).__init__()
+        super(E2E, self).__init__()
         self.which_set = which_set
 
         x_string, y_string = self._read()
         self._string_to_char(x_string, y_string)
 
     def __repr__(self) -> str:
-        return f'Restaurant Dataset, E2E-style format\n' \
+        return f'E2E Challenge Dataset, {self.which_set.name.lower()} set\n' \
                f'\tNumber of instances: {self.__len__()}\n'
 
     def _read(self) -> Tuple[List[str], List[str]]:

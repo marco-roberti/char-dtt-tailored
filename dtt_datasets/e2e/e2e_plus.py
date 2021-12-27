@@ -1,8 +1,8 @@
 # coding=utf-8
 import os
 
-from datasets.base import DatasetType
-from datasets.e2e.e2e import E2E
+from dtt_datasets.base import DatasetType
+from dtt_datasets.e2e.e2e import E2E
 
 
 class E2EPlus(E2E):
